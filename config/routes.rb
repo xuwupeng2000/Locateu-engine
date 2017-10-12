@@ -1,3 +1,15 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  apipie
+  namespace :api do
+    namespace :v1 do
+      resources :user_tokens, only: [:create] # Login
+      resources :users, only: [:create]
+      resources :geo_tracks, only: [:create]
+      resources :user_tracks, only: [:index]
+      resources :user_permissions, only: [:create, :destory]
+      resources :user_profiles, only: [:create, :show]
+      resources :user_sensors, only: [:create, :delete, :index]
+		end
+	end
 end
