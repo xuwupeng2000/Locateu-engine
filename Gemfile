@@ -8,9 +8,14 @@ end
 gem 'raygun4ruby'
 
 gem 'rails', '~> 5.1.2'
+
 gem 'pg', '~> 0.18'
+gem 'activerecord-postgis-adapter'
+
 gem 'puma', '~> 3.0'
 gem 'hashie'
+
+gem 'statesman'
 
 # API 
 gem 'jbuilder'
