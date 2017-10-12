@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171012040953) do
+ActiveRecord::Schema.define(version: 20171012044849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,18 @@ ActiveRecord::Schema.define(version: 20171012040953) do
     t.datetime "updated_at", null: false
     t.index ["lat"], name: "index_geo_tracks_on_lat", using: :gist
     t.index ["lng"], name: "index_geo_tracks_on_lng", using: :gist
+  end
+
+  create_table "permission_transitions", force: :cascade do |t|
+    t.string "to_state", null: false
+    t.jsonb "metadata", default: {}
+    t.integer "sort_key", null: false
+    t.integer "permisson_id", null: false
+    t.boolean "most_recent", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["permisson_id", "most_recent"], name: "index_permission_transitions_parent_most_recent", unique: true, where: "most_recent"
+    t.index ["permisson_id", "sort_key"], name: "index_permission_transitions_parent_sort", unique: true
   end
 
   create_table "permissions", force: :cascade do |t|
