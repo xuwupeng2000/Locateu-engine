@@ -45,7 +45,6 @@ gem 'faker'
 
 # FE
 gem 'react-rails'
-gem 'webpacker'
 
 group :development, :test do
   gem 'capistrano3-puma'
