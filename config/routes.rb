@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   end
 
   root to: 'logins#index' # Where we mount the react app for now
+  get '*path', to: 'logins#index'
 end
