@@ -17,7 +17,7 @@ gem 'hashie'
 
 gem 'statesman'
 
-# API 
+# API
 gem 'jbuilder'
 gem 'apipie-rails'
 gem 'kaminari'
@@ -42,6 +42,10 @@ gem 'uglifier'
 # user use those to seed staging
 gem 'factory_girl_rails'
 gem 'faker'
+
+# FE
+gem 'react-rails'
+gem 'webpacker'
 
 group :development, :test do
   gem 'capistrano3-puma'
