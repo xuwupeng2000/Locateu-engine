@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
     head 401
   end
 
+  def authenticate_user
+    
+  end
+
 end

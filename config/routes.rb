@@ -10,6 +10,8 @@ Rails.application.routes.draw do
       resources :user_permissions, only: [:create, :destory]
       resources :user_profiles, only: [:create, :show]
       resources :user_sensors, only: [:create, :delete, :index]
-		end
-	end
+    end
+  end
+
+  root to: 'welcome#index' # Where we mount the react app for now
 end
