@@ -43,9 +43,6 @@ gem 'uglifier'
 gem 'factory_girl_rails'
 gem 'faker'
 
-# FE
-gem 'react-rails'
-
 group :development, :test do
   gem 'capistrano3-puma'
   gem 'capistrano3-delayed-job', '~> 1.0'
