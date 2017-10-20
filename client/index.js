@@ -6,6 +6,7 @@ import LoginScreen from './components/login_screen.jsx'
 import RegisterScreen from './components/register_screen.jsx'
 import MapScreen from './components/map_screen.jsx'
 import PrivateRoute from './components/private_route.jsx'
+import ManageDevicesScreen from './components/manage_devices_screen.jsx'
 
 render(
   <Router>
@@ -15,6 +16,7 @@ render(
       <Route path="/login" component={LoginScreen}/> # Create an account here
       <PrivateRoute path="/map" component={MapScreen}> </PrivateRoute>
       <PrivateRoute path="/link_device" component={LinkDeviceScreen}> </PrivateRoute>
+      <PrivateRoute path="/devices" component={ManageDevicesScreen}> </PrivateRoute>
     </div>
   </Router>,
   document.getElementById('root')

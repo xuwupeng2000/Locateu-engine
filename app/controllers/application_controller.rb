@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
 
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
-  rescue_from Apipie::ParamInvalid, with: :bad_request
-  rescue_from ActiveRecord::RecordNotFound, with: :render_401
 
   def render_401
     head 401

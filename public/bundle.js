@@ -3154,6 +3154,10 @@ var _private_route = __webpack_require__(109);
 
 var _private_route2 = _interopRequireDefault(_private_route);
 
+var _manage_devices_screen = __webpack_require__(111);
+
+var _manage_devices_screen2 = _interopRequireDefault(_manage_devices_screen);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _reactDom.render)(_react2.default.createElement(
@@ -3176,6 +3180,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     _react2.default.createElement(
       _private_route2.default,
       { path: '/link_device', component: _link_device_screen2.default },
+      ' '
+    ),
+    _react2.default.createElement(
+      _private_route2.default,
+      { path: '/devices', component: _manage_devices_screen2.default },
       ' '
     )
   )
@@ -27745,6 +27754,139 @@ var alertMessage = exports.alertMessage = function alertMessage(err) {
   var msg = err.response.data.errors;
   alert(msg);
 };
+
+/***/ }),
+/* 111 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _http_client = __webpack_require__(23);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ManageDevicesScreen = function (_Component) {
+  _inherits(ManageDevicesScreen, _Component);
+
+  function ManageDevicesScreen() {
+    _classCallCheck(this, ManageDevicesScreen);
+
+    var _this = _possibleConstructorReturn(this, (ManageDevicesScreen.__proto__ || Object.getPrototypeOf(ManageDevicesScreen)).call(this));
+
+    _this.state = {
+      devices: []
+    };
+
+    _this.onButtonClick = _this.onButtonClick.bind(_this);
+    _this.listSensors();
+    return _this;
+  }
+
+  _createClass(ManageDevicesScreen, [{
+    key: 'unlinkSensorToAccount',
+    value: function unlinkSensorToAccount(id) {
+      var _this2 = this;
+
+      _http_client.httpClient.delete('/api/v1/user_sensors/' + id).then(function (resp) {
+        var sensors = resp.data.sensors;
+        _this2.setState({ devices: sensors });
+      }).catch(function (err) {
+        alert(err);
+      });
+    }
+  }, {
+    key: 'listSensors',
+    value: function listSensors() {
+      var _this3 = this;
+
+      _http_client.httpClient.get('/api/v1/user_sensors').then(function (resp) {
+        var sensors = resp.data.sensors;
+        _this3.setState({ devices: sensors });
+      }).catch(function (err) {
+        alert(err);
+      });
+    }
+  }, {
+    key: 'onButtonClick',
+    value: function onButtonClick(id, e) {
+      e.preventDefault();
+
+      if (confirm('Are you sure?')) {
+        this.unlinkSensorToAccount(id);
+      } else {}
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this4 = this;
+
+      var devices = this.state.devices.map(function (d) {
+        return _react2.default.createElement(
+          'tr',
+          { key: d.id },
+          _react2.default.createElement(
+            'td',
+            null,
+            d.serial_code,
+            ' \uD83D\uDCF2'
+          ),
+          _react2.default.createElement(
+            'td',
+            null,
+            ' ',
+            _react2.default.createElement(
+              'button',
+              { onClick: _this4.onButtonClick.bind(_this4, d.serial_code), className: 'button button-small button-outline' },
+              'Unlink'
+            ),
+            ' '
+          )
+        );
+      });
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h1',
+          null,
+          'Manage your devices here'
+        ),
+        _react2.default.createElement(
+          'table',
+          null,
+          _react2.default.createElement(
+            'tbody',
+            null,
+            devices
+          )
+        )
+      );
+    }
+  }]);
+
+  return ManageDevicesScreen;
+}(_react.Component);
+
+exports.default = ManageDevicesScreen;
+;
 
 /***/ })
 /******/ ]);

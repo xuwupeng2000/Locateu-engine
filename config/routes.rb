@@ -7,9 +7,9 @@ Rails.application.routes.draw do
       resources :users, only: [:create]
       resources :geo_tracks, only: [:create]
       resources :user_tracks, only: [:index]
-      resources :user_permissions, only: [:create, :destory]
+      resources :user_permissions, only: [:create, :destroy]
       resources :user_profiles, only: [:create, :show]
-      resources :user_sensors, only: [:create, :delete, :index]
+      resources :user_sensors, only: [:create, :destroy, :index]
     end
   end
 

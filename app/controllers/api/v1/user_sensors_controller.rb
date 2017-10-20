@@ -14,9 +14,12 @@ class Api::V1::UserSensorsController < ApplicationController
   end
 
   # Unlink sensor with user
-  def delete
-    @sensor = current_user.sensors.find(sensor_params(:serial_code))
+  def destroy
+    @sensor = current_user.sensors.find_by(serial_code: params[:id])
     @sensor.destroy!
+
+    @sensors = current_user.sensors
+    render :index
   end
 
   # List all sensors with user
@@ -27,7 +30,10 @@ class Api::V1::UserSensorsController < ApplicationController
   private
 
   def sensor_params
-    params.require(:sensor).permit(:serial_code, :serial_code_confirmation)
+    params.require(:sensor).permit(
+      :serial_code,
+      :serial_code_confirmation
+    )
   end
 
 end
