@@ -1993,17 +1993,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     ' # Login',
     _react2.default.createElement(_reactRouterDom.Route, { path: '/register', component: _register_screen2.default }),
     ' # Create an account here',
+    _react2.default.createElement(_reactRouterDom.Route, { path: '/login', component: _login_screen2.default }),
+    ' # Create an account here',
     _react2.default.createElement(
       _private_route2.default,
-      { path: '/map' },
-      '# Map of geo tracks, you can select device and see the track of it',
-      _react2.default.createElement(_map_screen2.default, null)
+      { path: '/map', component: _map_screen2.default },
+      ' '
     ),
     _react2.default.createElement(
       _private_route2.default,
-      { path: '/link_device' },
-      '# Link device to your account',
-      _react2.default.createElement(_link_device_screen2.default, null)
+      { path: '/link_device', component: _link_device_screen2.default },
+      ' '
     )
   )
 ), document.getElementById('root'));
@@ -25909,16 +25909,11 @@ var _reactRouterDom = __webpack_require__(69);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var PrivateRoute = function PrivateRoute(_ref) {
-  var Component = _ref.component;
+  var Component = _ref.component,
+      path = _ref.path;
 
-  return _react2.default.createElement(_reactRouterDom.Route, { render: function render(props) {
-      return _auth_logic2.default.isAuthenticated ? _react2.default.createElement(
-        'div',
-        null,
-        ' ',
-        props.childern,
-        ' '
-      ) : _react2.default.createElement(_reactRouterDom.Redirect, { to: { pathname: '/login' } });
+  return _react2.default.createElement(_reactRouterDom.Route, { path: path, render: function render() {
+      return _auth_logic2.default.isAuthenticated() ? _react2.default.createElement(Component, null) : _react2.default.createElement(_reactRouterDom.Redirect, { to: '/login' });
     } });
 };
 
@@ -25947,7 +25942,7 @@ var AuthLogic = function () {
   _createClass(AuthLogic, [{
     key: "isAuthenticated",
     value: function isAuthenticated() {
-      return true;
+      return false;
     }
   }]);
 

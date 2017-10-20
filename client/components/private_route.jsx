@@ -2,13 +2,13 @@ import AuthLogic from './auth_logic.jsx'
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom'; 
 
-const PrivateRoute = ({ component: Component }) => {
+const PrivateRoute = ({ component: Component, path: path }) => {
   return (
-    <Route render = {(props) => (
-      AuthLogic.isAuthenticated ? (
-        <div> {props.childern} </div>
+    <Route path={ path } render = {() => (
+      AuthLogic.isAuthenticated() ? (
+        <Component />
       ) : (
-        <Redirect to={{ pathname: '/login' }}/>
+        <Redirect to='/login' />
       )
     )}/>
 )};

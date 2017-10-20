@@ -1,7 +1,7 @@
 class AuthLogic {
 
   isAuthenticated() {
-    return true;
+    return false;
   }
 
 };

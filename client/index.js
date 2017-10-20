@@ -12,14 +12,9 @@ render(
     <div>
       <Route exact path="/" component={LoginScreen}/> # Login
       <Route path="/register" component={RegisterScreen}/> # Create an account here
-      <PrivateRoute path="/map">
-        # Map of geo tracks, you can select device and see the track of it
-        <MapScreen></MapScreen>
-      </PrivateRoute>
-      <PrivateRoute path="/link_device">
-        # Link device to your account
-        <LinkDeviceScreen></LinkDeviceScreen>
-      </PrivateRoute>
+      <Route path="/login" component={LoginScreen}/> # Create an account here
+      <PrivateRoute path="/map" component={MapScreen}> </PrivateRoute>
+      <PrivateRoute path="/link_device" component={LinkDeviceScreen}> </PrivateRoute>
     </div>
   </Router>,
   document.getElementById('root')
