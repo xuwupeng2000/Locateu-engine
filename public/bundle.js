@@ -1977,6 +1977,10 @@ var _map_screen = __webpack_require__(64);
 
 var _map_screen2 = _interopRequireDefault(_map_screen);
 
+var _private_route = __webpack_require__(82);
+
+var _private_route2 = _interopRequireDefault(_private_route);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _reactDom.render)(_react2.default.createElement(
@@ -1989,10 +1993,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     ' # Login',
     _react2.default.createElement(_reactRouterDom.Route, { path: '/register', component: _register_screen2.default }),
     ' # Create an account here',
-    _react2.default.createElement(_reactRouterDom.Route, { path: '/map', component: _map_screen2.default }),
-    ' # Map of geo tracks, you can select device and see the track of it',
-    _react2.default.createElement(_reactRouterDom.Route, { path: '/link_device', component: _link_device_screen2.default }),
-    ' # Link device to your account'
+    _react2.default.createElement(
+      _private_route2.default,
+      { path: '/map' },
+      '# Map of geo tracks, you can select device and see the track of it',
+      _react2.default.createElement(_map_screen2.default, null)
+    ),
+    _react2.default.createElement(
+      _private_route2.default,
+      { path: '/link_device' },
+      '# Link device to your account',
+      _react2.default.createElement(_link_device_screen2.default, null)
+    )
   )
 ), document.getElementById('root'));
 
@@ -25872,6 +25884,78 @@ NavLink.defaultProps = {
 
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_withRouter__["a" /* default */]);
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _auth_logic = __webpack_require__(83);
+
+var _auth_logic2 = _interopRequireDefault(_auth_logic);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(69);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var PrivateRoute = function PrivateRoute(_ref) {
+  var Component = _ref.component;
+
+  return _react2.default.createElement(_reactRouterDom.Route, { render: function render(props) {
+      return _auth_logic2.default.isAuthenticated ? _react2.default.createElement(
+        'div',
+        null,
+        ' ',
+        props.childern,
+        ' '
+      ) : _react2.default.createElement(_reactRouterDom.Redirect, { to: { pathname: '/login' } });
+    } });
+};
+
+exports.default = PrivateRoute;
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var AuthLogic = function () {
+  function AuthLogic() {
+    _classCallCheck(this, AuthLogic);
+  }
+
+  _createClass(AuthLogic, [{
+    key: "isAuthenticated",
+    value: function isAuthenticated() {
+      return true;
+    }
+  }]);
+
+  return AuthLogic;
+}();
+
+;
+exports.default = new AuthLogic();
 
 /***/ })
 /******/ ]);
