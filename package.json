@@ -6,6 +6,8 @@
   "author": "Jack Wu( [♠]]] ) <xuwupeng2000@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.16.2",
+    "muicss": "^0.9.27",
     "path": "^0.12.7",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",

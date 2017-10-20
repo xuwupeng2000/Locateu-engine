@@ -4,6 +4,7 @@ export default class RegisterScreen extends Component {
   render() {
     return (
       <div>
+        <h1>Become a new user</h1>
         <form action="">
           <div>
             <label htmlFor="">Email</label>

@@ -5,7 +5,16 @@ export default class LinkDeviceScreen extends Component {
     return (
       <div>
         <h1>Link device to your account 🙋🏻‍♂️</h1>
+        <form action="">
+          <div>
+            <label htmlFor="">Device serial number</label>
+            <input type="text"/>
+          </div>
+          <div>
+            <button>Confirm</button>
+          </div>
+        </form>
       </div>
     )
   }
-}
+};
