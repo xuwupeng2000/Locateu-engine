@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { httpClient } from './http_client.js'
+import { alertMessage } from './alert_message.js'
 
 export default class RegisterScreen extends Component {
 
@@ -25,8 +26,7 @@ export default class RegisterScreen extends Component {
       .then((resp) => {
       })
       .catch((err) => {
-        let msg = err.response.data.errors;
-        alert(msg);
+        alertMessage(err);
       });
   }
 

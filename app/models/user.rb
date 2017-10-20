@@ -16,6 +16,6 @@ class User < ApplicationRecord
   end
 
   def self.from_token_payload(payload)
-    find_by_email(payload['sub'])
+    find_by_username(payload['sub'])
   end
 end

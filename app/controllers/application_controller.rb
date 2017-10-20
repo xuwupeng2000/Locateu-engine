@@ -1,14 +1,46 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user
 
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  rescue_from Apipie::ParamInvalid, with: :bad_request
   rescue_from ActiveRecord::RecordNotFound, with: :render_401
 
   def render_401
     head 401
   end
 
-  def authenticate_user
+  def current_user
+    @current_user ||= User.from_token_payload(
+      ::Knock::AuthToken.new(token: token_from_request_headers).payload
+    )
+  rescue JWT::DecodeError => e
+    head 401, json: {exception: e.message}
+  end
+  helper_method :current_user
 
+  def authenticate_user
+    head 401 unless current_user
+  end
+
+  def not_found(exception)
+    head 404, json: {exception: exception.message}
+  end
+
+  def bad_request(exception)
+    Raygun.track_exception(exception)
+  end
+
+  def unauthorized_token(exception)
+    head 401, json: {error: 'Unauthorized token'}
+  end
+
+  def expried_token(exception)
+    head 401, json: {error: 'Expired token'}
+  end
+
+  private
+
+  def token_from_request_headers
+    request.headers['Authorization']&.split&.last
   end
 
 end

@@ -1,1 +1,1 @@
-json.(sensor, serial_code, created_at, updated_at)
+json.(sensor, :serial_code, :created_at, :updated_at)

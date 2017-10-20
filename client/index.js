@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'; 
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LinkDeviceScreen from './components/link_device_screen.jsx'
 import LoginScreen from './components/login_screen.jsx'
 import RegisterScreen from './components/register_screen.jsx'

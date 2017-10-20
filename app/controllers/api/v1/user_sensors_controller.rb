@@ -1,4 +1,5 @@
 class Api::V1::UserSensorsController < ApplicationController
+  before_action :authenticate_user
 
   # Link sensor with user
   def create
@@ -8,7 +9,7 @@ class Api::V1::UserSensorsController < ApplicationController
     if @sensor.save
       render :show
     else
-      render :not_found, status: 404
+      render :error, status: 422
     end
   end
 
@@ -26,7 +27,7 @@ class Api::V1::UserSensorsController < ApplicationController
   private
 
   def sensor_params
-    params.reqire(:sensor).permit(:serial_code)
+    params.require(:sensor).permit(:serial_code, :serial_code_confirmation)
   end
 
 end
