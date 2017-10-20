@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+#
+#
+#
+
+require 'factory_girl_rails'
+require 'active_support'
+
+jack  = FactoryGirl.create(:user, username: 'jack', password: 'pass')
+arron = FactoryGirl.create(:user, username: 'aaron', password: 'pass')
+bill  = FactoryGirl.create(:user, username: 'bill', password: 'pass')

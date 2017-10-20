@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20171012044849) do
   enable_extension "postgis"
 
   create_table "geo_tracks", force: :cascade do |t|
+    t.bigint "sensor_id", null: false
     t.geography "lat", limit: {:srid=>4326, :type=>"st_point", :geographic=>true}
     t.geography "lng", limit: {:srid=>4326, :type=>"st_point", :geographic=>true}
     t.jsonb "metadada", default: {}
@@ -24,6 +25,7 @@ ActiveRecord::Schema.define(version: 20171012044849) do
     t.datetime "updated_at", null: false
     t.index ["lat"], name: "index_geo_tracks_on_lat", using: :gist
     t.index ["lng"], name: "index_geo_tracks_on_lng", using: :gist
+    t.index ["sensor_id"], name: "index_geo_tracks_on_sensor_id"
   end
 
   create_table "permission_transitions", force: :cascade do |t|
@@ -61,7 +63,7 @@ ActiveRecord::Schema.define(version: 20171012044849) do
     t.string "username", null: false
     t.string "password_digest", null: false
     t.string "email"
-    t.string "profile"
+    t.string "profile_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email"

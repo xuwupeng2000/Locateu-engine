@@ -6,7 +6,7 @@ class Api::V1::UserGeoTracksController < ApplicationController
   # Server don't know the user profile, we can only tell where each sensor have been
   # Where our Map UI data comes from
   def index
-  	
+    @geo_tracks = current_user.geo_tracks.order(created_at: :desc)
   end
 
 end

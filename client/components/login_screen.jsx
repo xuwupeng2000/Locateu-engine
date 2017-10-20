@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import http from 'axios'
+import authLogic from './auth_logic.js'
+import { httpClient } from './http_client.js'
 
 export default class LoginScreen extends Component {
 
@@ -7,15 +8,20 @@ export default class LoginScreen extends Component {
     super();
 
     this.state = {
-      email: '',
+      username: '',
       password: ''
     };
   }
 
   authenticate(data) {
-    http.post('/api/v1/user_tokens', data)
-      .then((data) => {
-        debugger
+    httpClient.post('/api/v1/user_tokens', data)
+      .then((resp) => {
+        let { token, payload } = resp.data.auth_token;
+        authLogic.saveAuthToken(token);
+        httpClient.defaults.headers.common['Authorization'] = token;
+      })
+      .catch((err) => {
+        alert(err);
       });
   }
 
@@ -37,8 +43,8 @@ export default class LoginScreen extends Component {
         <h1>Login here 🤠</h1>
         <form onSubmit={this.onSubmit.bind(this)}>
           <div>
-            <label>Email</label>
-            <input name='email' onChange={this.onChange.bind(this)} type="text"/>
+            <label>Password</label>
+            <input name='username' onChange={this.onChange.bind(this)} type="text"/>
           </div>
           <div>
             <label>Password</label>

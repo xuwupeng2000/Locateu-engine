@@ -10,7 +10,7 @@ class Api::V1::UserTokensController < ApplicationController
   private
 
   def authenticate
-    user = User.find_by_email(auth_params[:email])
+    user = User.find_by_username(auth_params[:username])
 
     token = if user && user.authenticate(auth_params[:password])
               auth_token(user)
@@ -25,6 +25,6 @@ class Api::V1::UserTokensController < ApplicationController
   end
 
   def auth_params
-    params.require(:auth).permit(:email, :password)
+    params.require(:auth).permit(:username, :password)
   end
 end
