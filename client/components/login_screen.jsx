@@ -38,6 +38,10 @@ export default class LoginScreen extends Component {
     this.setState(state);
   }
 
+  redirectToRegister() {
+    this.props.history.push('/register');
+  }
+
   render() {
     return (
       <div>
@@ -52,7 +56,10 @@ export default class LoginScreen extends Component {
             <input name='password' onChange={this.onChange.bind(this)} type="password"/>
           </div>
           <div>
-            <button>Confirm</button>
+            <button className="button button- outline">Confirm</button>
+          </div>
+          <div className="float-right">
+            <button className="button button-clear" onClick={this.redirectToRegister.bind(this)}>Create New Account</button>
           </div>
         </form>
 

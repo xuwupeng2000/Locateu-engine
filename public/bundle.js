@@ -27873,6 +27873,11 @@ var LoginScreen = function (_Component) {
       this.setState(state);
     }
   }, {
+    key: 'redirectToRegister',
+    value: function redirectToRegister() {
+      this.props.history.push('/register');
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -27911,8 +27916,17 @@ var LoginScreen = function (_Component) {
             null,
             _react2.default.createElement(
               'button',
-              null,
+              { className: 'button button- outline' },
               'Confirm'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'float-right' },
+            _react2.default.createElement(
+              'button',
+              { className: 'button button-clear', onClick: this.redirectToRegister.bind(this) },
+              'Create New Account'
             )
           )
         )
@@ -27982,7 +27996,11 @@ var RegisterScreen = function (_Component) {
   }, {
     key: 'createAccount',
     value: function createAccount(data) {
-      _http_client.httpClient.post('/api/v1/users', data).then(function (resp) {}).catch(function (err) {
+      var _this2 = this;
+
+      _http_client.httpClient.post('/api/v1/users', data).then(function (resp) {
+        _this2.props.history.push('/map');
+      }).catch(function (err) {
         (0, _alert_message.alertMessage)(err);
       });
     }

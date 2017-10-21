@@ -24,6 +24,7 @@ export default class RegisterScreen extends Component {
   createAccount(data) {
     httpClient.post('/api/v1/users', data)
       .then((resp) => {
+        this.props.history.push('/map');
       })
       .catch((err) => {
         alertMessage(err);
