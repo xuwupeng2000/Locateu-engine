@@ -5,7 +5,6 @@ class Permission < ApplicationRecord
   include Statesman::Adapters::ActiveRecordQueries
 
   belongs_to :user
-  belongs_to :ec, source: :ec, class: 'User'
   has_many :permission_transitions, autosave: false
 
   def state_machine
