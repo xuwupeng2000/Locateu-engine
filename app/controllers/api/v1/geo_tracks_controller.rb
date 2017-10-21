@@ -1,5 +1,4 @@
 class Api::V1::GeoTracksController < ApplicationController
-  skip_before_action :authenticate_user
 
   # Record the Geo tracks of sensor
   # We will need to know the UUID(serial_number) of sensor, lat and lng, no more than that

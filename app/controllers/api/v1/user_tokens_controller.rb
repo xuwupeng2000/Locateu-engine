@@ -1,4 +1,5 @@
 class Api::V1::UserTokensController < ApplicationController
+  before_action :authenticate_user
 
   # Where user can login and hold a token, whenever a request is made the token will be validate against
   def create
