@@ -28198,6 +28198,11 @@ var PoiLitItem = function (_Component) {
   }
 
   _createClass(PoiLitItem, [{
+    key: 'onViewClick',
+    value: function onViewClick(track) {
+      this.props.map.panTo({ lat: track.lat, lng: track.lng });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var track = this.props.track;
@@ -28231,7 +28236,7 @@ var PoiLitItem = function (_Component) {
           ' ',
           _react2.default.createElement(
             'button',
-            { onClick: this.props.onClick, className: 'button button-small button-outline' },
+            { onClick: this.onViewClick.bind(this, track), className: 'button button-small button-outline' },
             'View'
           ),
           ' '
@@ -28286,7 +28291,7 @@ var Gmap = function (_Component2) {
       });
 
       var list = this.state.geo_tracks.map(function (track) {
-        return _react2.default.createElement(PoiLitItem, { key: track.id, track: track, onClick: _this4.onClick });
+        return _react2.default.createElement(PoiLitItem, { key: track.id, track: track, map: _this4.map });
       });
 
       return _react2.default.createElement(

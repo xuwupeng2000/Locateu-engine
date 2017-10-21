@@ -5,6 +5,10 @@ import _ from 'lodash'
 
 class PoiLitItem extends Component {
 
+  onViewClick(track) {
+    this.props.map.panTo({lat: track.lat, lng: track.lng});
+  }
+
   render() {
     let track = this.props.track;
     return (
@@ -13,7 +17,7 @@ class PoiLitItem extends Component {
         <td>{track.created_at}</td>
         <td>{track.user.username}</td>
         <td>{track.sensor.serial_code}</td>
-        <td> <button onClick={this.props.onClick} className="button button-small button-outline">View</button> </td>
+        <td> <button onClick={this.onViewClick.bind(this, track)} className="button button-small button-outline">View</button> </td>
       </tr>
     );
   }
@@ -55,7 +59,7 @@ class Gmap extends Component {
 
     let list = this.state.geo_tracks.map((track) => {
       return (
-        <PoiLitItem key={track.id} track={track} onClick={this.onClick}></PoiLitItem>
+        <PoiLitItem key={track.id} track={track} map={this.map}></PoiLitItem>
       );
     });
 
