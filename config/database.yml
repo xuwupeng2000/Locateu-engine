@@ -6,6 +6,7 @@
 #
 default: &default
   adapter: postgis
+  url: <%= ENV.fetch('DATABASE_URL', '').sub(/^postgres/, "postgis") %>
   pool: 10
   timeout: 5000
 
