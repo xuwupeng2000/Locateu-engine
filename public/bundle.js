@@ -28257,6 +28257,8 @@ var Gmap = function (_Component2) {
     var _this2 = _possibleConstructorReturn(this, (Gmap.__proto__ || Object.getPrototypeOf(Gmap)).call(this));
 
     _this2.state = {
+      currentSelectedDevice: '',
+      sensor_list: [],
       geo_tracks: []
     };
     return _this2;
@@ -28269,8 +28271,10 @@ var Gmap = function (_Component2) {
 
       _http_client.httpClient.get('/api/v1/user_geo_tracks').then(function (resp) {
         var tracks = resp.data.geo_tracks;
+        var sensors = resp.data.sensors;
         var mostRecent = _lodash2.default.last(tracks);
-        _this3.setState({ geo_tracks: tracks });
+
+        _this3.setState({ geo_tracks: tracks, sensor_list: sensors, currentSelectedDevice: _lodash2.default.first(sensors).serial_code });
         _this3.map.panTo({ lat: mostRecent.lat, lng: mostRecent.lng });
       }).catch(function (err) {
         alert(err);
@@ -28282,16 +28286,36 @@ var Gmap = function (_Component2) {
       this.fetchGeoTracks();
     }
   }, {
+    key: 'onSelectChange',
+    value: function onSelectChange(e) {
+      var currentSelected = e.currentTarget.value;
+      this.setState({ currentSelectedDevice: currentSelected });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this4 = this;
 
-      var showTracks = this.state.geo_tracks.map(function (track, index) {
+      var selectedTracks = _lodash2.default.filter(this.state.geo_tracks, function (e) {
+        return e.sensor.serial_code === _this4.state.currentSelectedDevice;
+      });
+
+      var showTracks = selectedTracks.map(function (track, index) {
         return _react2.default.createElement(_reactGoogleMaps.Marker, { key: track.id, label: index.toString(), position: { lat: track.lat, lng: track.lng } });
       });
 
-      var list = this.state.geo_tracks.map(function (track) {
+      var list = selectedTracks.map(function (track) {
         return _react2.default.createElement(PoiLitItem, { key: track.id, track: track, map: _this4.map });
+      });
+
+      var devicesOpts = this.state.sensor_list.map(function (e) {
+        return _react2.default.createElement(
+          'option',
+          { key: e.serial_code, value: e.serial_code },
+          ' ',
+          e.serial_code,
+          ' '
+        );
       });
 
       return _react2.default.createElement(
@@ -28306,6 +28330,15 @@ var Gmap = function (_Component2) {
             defaultZoom: 8,
             defaultCenter: { lat: -34.397, lng: 150.644 } },
           showTracks
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'select',
+            { selected: this.state.currentSelectedDevice, onChange: this.onSelectChange.bind(this) },
+            devicesOpts
+          )
         ),
         _react2.default.createElement(
           'table',

@@ -7,6 +7,7 @@ class Api::V1::UserGeoTracksController < ApplicationController
   # Where our Map UI data comes from
   def index
     @geo_tracks = current_user.geo_tracks.order(created_at: :desc)
+    @sensors = current_user.sensors
   end
 
 end
