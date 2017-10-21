@@ -6,7 +6,7 @@ export default class CxtMenu extends Component {
   render() {
     return (
       <div>
-        <Menu noOverlay>
+        <Menu onOverlay>
           <NavLink to="/map" activeClassName="selected" >Map</NavLink>
           <NavLink to="/link_device" activeClassName="selected" >Link device</NavLink>
           <NavLink to="/devices" activeClassName="selected" >Manage devices</NavLink>

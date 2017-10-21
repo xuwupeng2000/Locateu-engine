@@ -1,6 +1,8 @@
 json.lat geo_track.lnglat.lat
 json.lng geo_track.lnglat.lon
-json.(geo_track, :id, :created_at, :updated_at)
+json.created_at geo_track.created_at.strftime('%F %T')
+json.updated_at geo_track.updated_at.strftime('%F %T')
+json.id geo_track.id
 json.sensor do
   json.partial! 'shared/sensor', sensor: geo_track.sensor
 end
