@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { httpClient } from './http_client.js'
 import { alertMessage } from './alert_message.js'
+import { withRouter } from 'react-router-dom'
 
-export default class LinkDeviceScreen extends Component {
+class LinkDeviceScreen extends Component {
 
   constructor() {
     super();
@@ -22,6 +23,7 @@ export default class LinkDeviceScreen extends Component {
   addSensorToAccount(data) {
     httpClient.post('/api/v1/user_sensors', data)
       .then((resp) => {
+        this.props.history.push('/devices');
       })
       .catch((err) => {
         alertMessage(err);
@@ -56,3 +58,4 @@ export default class LinkDeviceScreen extends Component {
     )
   }
 };
+export default  withRouter(LinkDeviceScreen);

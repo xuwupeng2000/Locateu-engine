@@ -19,6 +19,7 @@ export default class LoginScreen extends Component {
         let { token, payload } = resp.data.auth_token;
         authLogic.saveAuthToken(token);
         httpClient.defaults.headers.common['Authorization'] = token;
+        this.props.history.push('/map');
       })
       .catch((err) => {
         alert(err);

@@ -49,7 +49,7 @@ export default class ManageDevicesScreen extends Component {
   render() {
     let devices = this.state.devices.map((d) => {
       return(
-        <tr key={d.id}>
+        <tr key={d.serial_code}>
           <td>{d.serial_code} 📲</td>
           <td> <button onClick={this.onButtonClick.bind(this, d.serial_code)} className="button button-small button-outline">Unlink</button> </td>
         </tr>

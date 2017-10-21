@@ -9,12 +9,7 @@
   </head>
 
   <body>
-    <div class="container">
-
-      <div class="row">
-        <div class="column"> <%= yield %> </div>
-      </div>
-    </div>
+    <%= yield %>
     <%= javascript_include_tag '/bundle' %>
   </body>
 </html>

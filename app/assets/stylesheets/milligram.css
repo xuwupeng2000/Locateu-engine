@@ -24,6 +24,7 @@ body {
   font-weight: 300;
   letter-spacing: .01em;
   line-height: 1.6;
+  margin: 0;
 }
 
 blockquote {
@@ -249,7 +250,6 @@ label,
 legend {
   display: block;
   font-size: 1.6rem;
-  font-weight: 700;
   margin-bottom: .5rem;
 }
 
