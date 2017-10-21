@@ -18,13 +18,11 @@ ActiveRecord::Schema.define(version: 20171012044849) do
 
   create_table "geo_tracks", force: :cascade do |t|
     t.bigint "sensor_id", null: false
-    t.geography "lat", limit: {:srid=>4326, :type=>"st_point", :geographic=>true}
-    t.geography "lng", limit: {:srid=>4326, :type=>"st_point", :geographic=>true}
+    t.geography "lnglat", limit: {:srid=>4326, :type=>"st_point", :geographic=>true}
     t.jsonb "metadada", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["lat"], name: "index_geo_tracks_on_lat", using: :gist
-    t.index ["lng"], name: "index_geo_tracks_on_lng", using: :gist
+    t.index ["lnglat"], name: "index_geo_tracks_on_lnglat", using: :gist
     t.index ["sensor_id"], name: "index_geo_tracks_on_sensor_id"
   end
 

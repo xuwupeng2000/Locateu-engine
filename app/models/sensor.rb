@@ -2,6 +2,7 @@
 # Each sensor have many geo tracks
 class Sensor < ApplicationRecord
   belongs_to :user
+  has_many :geo_tracks
 
   validates :serial_code,
     presence: true,

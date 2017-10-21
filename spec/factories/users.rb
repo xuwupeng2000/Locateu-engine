@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :user do
-    username { Faker::Name.name.join('_') }
+    username {Faker::Name.name.gsub(' ', '_')}
     email { Faker::Internet.email }
     password '1password'
 

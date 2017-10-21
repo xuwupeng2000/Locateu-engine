@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :geo_track do
-    lat { Faker::Address.latitude }
-    lng { Faker::Address.longitude }
-
+    sensor
+    lnglat {"Point(#{Faker::Address.longitude} #{Faker::Address.latitude})"}
   end
 end

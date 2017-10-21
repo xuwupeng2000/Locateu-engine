@@ -5,7 +5,11 @@ class Api::V1::GeoTracksController < ApplicationController
   # We will need to know the UUID(serial_number) of sensor, lat and lng, no more than that
   def create
     @sensor = Sensor.find(sensor_params[:serial_code])
-    @geo_track = @sensor.geo_tracks.build(geo_track_params)
+    lng = geo_track_params[:lng]
+    lat = geo_track_params[:lat]
+    @geo_track = @sensor.geo_tracks.build(
+      lnglat: to_gis_point(lng, lat)
+    )
 
     @geo_track.save!
     render :show
@@ -24,6 +28,10 @@ class Api::V1::GeoTracksController < ApplicationController
       :lat,
       :lng
     )
+  end
+
+  def to_gis_point(lng, lat)
+    "Point(#{lng} #{lat})"
   end
 
 end

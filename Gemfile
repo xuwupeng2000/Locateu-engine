@@ -11,6 +11,7 @@ gem 'rails', '~> 5.1.2'
 
 gem 'pg', '~> 0.18'
 gem 'activerecord-postgis-adapter'
+gem 'rgeo'
 
 gem 'puma', '~> 3.0'
 gem 'hashie'

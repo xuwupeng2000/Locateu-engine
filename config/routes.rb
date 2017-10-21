@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       resources :user_tokens, only: [:create] # Login
       resources :users, only: [:create]
       resources :geo_tracks, only: [:create]
-      resources :user_tracks, only: [:index]
+      resources :user_geo_tracks, only: [:index]
       resources :user_permissions, only: [:create, :destroy]
       resources :user_profiles, only: [:create, :show]
       resources :user_sensors, only: [:create, :destroy, :index]

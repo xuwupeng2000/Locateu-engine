@@ -15,3 +15,13 @@ require 'active_support'
 jack  = FactoryGirl.create(:user, username: 'jack', password: 'pass')
 arron = FactoryGirl.create(:user, username: 'aaron', password: 'pass')
 bill  = FactoryGirl.create(:user, username: 'bill', password: 'pass')
+
+_sensor_jack = FactoryGirl.create(:sensor, user: jack)
+_sensor_arron = FactoryGirl.create(:sensor, user: arron)
+_sensor_bill = FactoryGirl.create(:sensor, user: bill)
+
+10.times do
+  [_sensor_jack, _sensor_arron, _sensor_bill].each do |sensor|
+    track = FactoryGirl.create(:geo_track, sensor: sensor)
+  end
+end
