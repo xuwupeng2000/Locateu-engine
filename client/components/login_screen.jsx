@@ -48,7 +48,7 @@ export default class LoginScreen extends Component {
         <h1>Login here 🤠</h1>
         <form onSubmit={this.onSubmit.bind(this)}>
           <div>
-            <label>Password</label>
+            <label>Username</label>
             <input name='username' onChange={this.onChange.bind(this)} type="text"/>
           </div>
           <div>
