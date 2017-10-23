@@ -12,7 +12,6 @@ import CxtMenu from './components/menu.jsx'
 render(
   <Router>
     <div>
-      <CxtMenu></CxtMenu>
       <div className="rc-container">
         <Route exact path="/" component={LoginScreen}/> # Login
         <Route path="/register" component={RegisterScreen}/> # Create an account here

@@ -8239,7 +8239,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   _react2.default.createElement(
     'div',
     null,
-    _react2.default.createElement(_menu2.default, null),
     _react2.default.createElement(
       'div',
       { className: 'rc-container' },
@@ -32683,11 +32682,6 @@ var MapScreen = function (_Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(
-          'h1',
-          null,
-          'Map \uD83D\uDDFA'
-        ),
         _react2.default.createElement(_gmap2.default, {
           isMarkerShown: true,
           googleMapURL: 'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places',
