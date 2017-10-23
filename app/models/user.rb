@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   has_secure_password
   validates :username, presence: true, uniqueness: {case_sensitive: false}
-  validates :email, presence: false, uniqueness: {case_sensitive: false}
+  validates :email, uniqueness: {case_sensitive: false}, email_format: { :message => 'is not in valid format' }, allow_nil: true
   validates_confirmation_of :password
 
   def to_token_payload

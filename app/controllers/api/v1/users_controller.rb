@@ -7,7 +7,8 @@ class Api::V1::UsersController < ApplicationController
 	# - Sensor
 	# - EC account
 	def create
-		@user = User.new(user_params)
+		attrs =	user_params.reject{|key, value| value.blank?}
+		@user = User.new(attrs)
 
 		if @user.save
 			render :created
