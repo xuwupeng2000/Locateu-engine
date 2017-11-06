@@ -10,11 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171012044849) do
+ActiveRecord::Schema.define(version: 20171106060808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
+
+  create_table "converted_payloads", force: :cascade do |t|
+    t.jsonb "content", default: {}, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "geo_tracks", force: :cascade do |t|
     t.bigint "sensor_id", null: false

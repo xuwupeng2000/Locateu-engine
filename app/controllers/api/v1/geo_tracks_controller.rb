@@ -3,15 +3,20 @@ class Api::V1::GeoTracksController < ApplicationController
   # Record the Geo tracks of sensor
   # We will need to know the UUID(serial_number) of sensor, lat and lng, no more than that
   def create
-    @sensor = Sensor.find(sensor_params[:serial_code])
-    lng = geo_track_params[:lng]
-    lat = geo_track_params[:lat]
-    @geo_track = @sensor.geo_tracks.build(
-      lnglat: to_gis_point(lng, lat)
-    )
+    # @sensor = Sensor.find(sensor_params[:serial_code])
+    # lng = geo_track_params[:lng]
+    # lat = geo_track_params[:lat]
+    # @geo_track = @sensor.geo_tracks.build(
+    #   lnglat: to_gis_point(lng, lat)
+    # )
 
-    @geo_track.save!
-    render :show
+    # @geo_track.save!
+    # render :show
+
+    payload = ConvertedPayload.new(content: payload_params)
+    payload.save!
+
+    head 201
   end
 
   private
@@ -27,6 +32,10 @@ class Api::V1::GeoTracksController < ApplicationController
       :lat,
       :lng
     )
+  end
+
+  def payload_params
+    params.permit!
   end
 
   def to_gis_point(lng, lat)

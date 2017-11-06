@@ -40,9 +40,11 @@ gem 'premailer-rails'
 gem 'sass-rails'
 gem 'uglifier'
 
-# user use those to seed staging
 gem 'factory_girl_rails'
 gem 'faker'
+
+# Hash
+gem 'hashie'
 
 group :development, :test do
   gem 'capistrano3-puma'
@@ -62,7 +64,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-# Notifications
-gem 'houston'
-gem 'gcm'
