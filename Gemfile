@@ -13,6 +13,8 @@ gem 'pg', '~> 0.18'
 gem 'activerecord-postgis-adapter'
 gem 'rgeo'
 
+gem 'rest-client'
+
 gem 'puma', '~> 3.0'
 gem 'hashie'
 
