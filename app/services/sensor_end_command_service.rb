@@ -16,7 +16,7 @@ class SensorEndCommandService
     # format spec: [company, device id, length of content, content]
 
     payload_content = "UPLOAD,#{seconds}"
-    cmd = ['3G', device_uuid, payload_content.size, payload_content]
+    cmd = ['3G', device_uuid, to_16_acsii(payload_content.size), payload_content]
     send_request(cmd)
   end
 
@@ -25,7 +25,7 @@ class SensorEndCommandService
     # [3G*8800000015*0006*CENTER]
 
     payload_content = "CENTER,#{phone_number}"
-    cmd = ['3G', device_uuid, payload_content.size, payload_content]
+    cmd = ['3G', device_uuid, to_16_acsii(payload_content.size), payload_content]
     send_request(cmd)
   end
 
@@ -35,7 +35,7 @@ class SensorEndCommandService
     # [3G*8800000015*0002*PW]
 
     payload_content = "PW,#{phone_number}"
-    cmd = ['3G', device_uuid, payload_content.size, payload_content]
+    cmd = ['3G', device_uuid, to_16_acsii(payload_content.size), payload_content]
     send_request(cmd)
   end
 
@@ -44,7 +44,7 @@ class SensorEndCommandService
     # [3G*8800000015*0004*CALL]
 
     payload_content = "CALL,#{phone_number}"
-    cmd = ['3G', device_uuid, payload_content.size, payload_content]
+    cmd = ['3G', device_uuid, to_16_acsii(payload_content.size), payload_content]
     send_request(cmd)
   end
 
@@ -53,7 +53,7 @@ class SensorEndCommandService
     # [3G*YYYYYYYYYY*LEN*MONITOR]
 
     payload_content = "MONITOR"
-    cmd = ['3G', device_uuid, payload_content.size, payload_content]
+    cmd = ['3G', device_uuid, to_16_acsii(payload_content.size), payload_content]
     send_request(cmd)
   end
 
@@ -62,7 +62,7 @@ class SensorEndCommandService
     # no response
 
     payload_content = "IP#{ip},#{port}"
-    cmd = ['3G', device_uuid, payload_content.size, payload_content]
+    cmd = ['3G', device_uuid, to_16_acsii(payload_content.size), payload_content]
     send_request(cmd)
   end
 
@@ -71,7 +71,7 @@ class SensorEndCommandService
     # [3G*8800000015*0007*FACTORY]
 
     payload_content = "FACTORY"
-    cmd = ['3G', device_uuid, payload_content.size, payload_content]
+    cmd = ['3G', device_uuid, to_16_acsii(payload_content.size), payload_content]
     send_request(cmd)
   end
 
@@ -80,7 +80,7 @@ class SensorEndCommandService
     # [3G*8800000015*0028*VERNO,G29_BASE_V1.00_2014.04.23_17.46.49]
 
     payload_content = "VERNO"
-    cmd = ['3G', device_uuid, payload_content.size, payload_content]
+    cmd = ['3G', device_uuid, to_16_acsii(payload_content.size), payload_content]
     send_request(cmd)
   end
 
@@ -89,7 +89,7 @@ class SensorEndCommandService
     # [3G*5678901234*0005*RESET]
 
     payload_content = "RESET"
-    cmd = ['3G', device_uuid, payload_content.size, payload_content]
+    cmd = ['3G', device_uuid, to_16_acsii(payload_content.size), payload_content]
     send_request(cmd)
   end
 
@@ -98,7 +98,7 @@ class SensorEndCommandService
     # [3G*5678901234*0008* POWEROFF]
 
     payload_content = "POWEROFF"
-    cmd = ['3G', device_uuid, payload_content.size, payload_content]
+    cmd = ['3G', device_uuid, to_16_acsii(payload_content.size), payload_content]
     send_request(cmd)
   end
 
@@ -108,11 +108,16 @@ class SensorEndCommandService
     # [3G*5678901234*0006*SOSSMS]
 
     payload_content = "SOSSMS#{swtich}"
-    cmd = ['3G', device_uuid, payload_content.size, payload_content]
+    cmd = ['3G', device_uuid, to_16_acsii(payload_content.size), payload_content]
     send_request(cmd)
   end
 
   private
+
+  def to_16_acsii(number)
+    _res = number.to_s(16).rjust(4, '0')
+    _res
+  end
 
   def wrap_content_payload(content)
     _string = "[#{content}]"
