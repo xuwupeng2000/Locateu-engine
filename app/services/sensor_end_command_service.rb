@@ -121,7 +121,7 @@ class SensorEndCommandService
 
   def wrap_content_payload(content)
     _string = "[#{content}]"
-    _encoded = _string.split('').map(&:ord).join()
+    _encoded = _string.split('').map(&:ord).map{|e| e.to_s(16) }.join()
     _encoded
   end
 
