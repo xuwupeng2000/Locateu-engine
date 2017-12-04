@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171106060808) do
+ActiveRecord::Schema.define(version: 20171204192124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,10 @@ ActiveRecord::Schema.define(version: 20171106060808) do
     t.jsonb "metadada", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "acc"
+    t.string "cmd"
+    t.datetime "gpstime"
+    t.datetime "systemtime"
     t.index ["lnglat"], name: "index_geo_tracks_on_lnglat", using: :gist
     t.index ["sensor_id"], name: "index_geo_tracks_on_sensor_id"
   end
