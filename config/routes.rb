@@ -10,6 +10,11 @@ Rails.application.routes.draw do
       resources :user_permissions, only: [:create, :destroy]
       resources :user_profiles, only: [:create, :show]
       resources :user_sensors, only: [:create, :destroy, :index]
+
+      resources :sensors, only: [] do
+        resource :ec_numbers, only: [:update, :show]
+        resource :remote_listening, only: [:create]
+      end
     end
   end
 

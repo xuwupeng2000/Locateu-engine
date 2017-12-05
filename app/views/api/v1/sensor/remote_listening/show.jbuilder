@@ -1,0 +1,1 @@
+json.sensor @sensor
