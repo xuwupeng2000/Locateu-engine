@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171012044849) do
+ActiveRecord::Schema.define(version: 20180819014050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,35 +26,16 @@ ActiveRecord::Schema.define(version: 20171012044849) do
     t.index ["sensor_id"], name: "index_geo_tracks_on_sensor_id"
   end
 
-  create_table "permission_transitions", force: :cascade do |t|
-    t.string "to_state", null: false
-    t.jsonb "metadata", default: {}
-    t.integer "sort_key", null: false
-    t.integer "permisson_id", null: false
-    t.boolean "most_recent", null: false
+  create_table "packages", force: :cascade do |t|
+    t.string "name"
+    t.string "category"
+    t.string "logo"
+    t.string "web_url"
+    t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["permisson_id", "most_recent"], name: "index_permission_transitions_parent_most_recent", unique: true, where: "most_recent"
-    t.index ["permisson_id", "sort_key"], name: "index_permission_transitions_parent_sort", unique: true
-  end
-
-  create_table "permissions", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "ec_id", null: false
-    t.string "state"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["ec_id"], name: "index_permissions_on_ec_id"
-    t.index ["state"], name: "index_permissions_on_state"
-    t.index ["user_id"], name: "index_permissions_on_user_id"
-  end
-
-  create_table "sensors", force: :cascade do |t|
-    t.string "serial_code"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_sensors_on_user_id"
+    t.index ["category"], name: "index_packages_on_category"
+    t.index ["name"], name: "index_packages_on_name"
   end
 
   create_table "users", force: :cascade do |t|

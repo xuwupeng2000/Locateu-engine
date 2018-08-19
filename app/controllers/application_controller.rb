@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
   def render_401
@@ -24,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def bad_request(exception)
-    Raygun.track_exception(exception)
+    head 400
   end
 
   def unauthorized_token(exception)
