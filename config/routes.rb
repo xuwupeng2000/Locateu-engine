@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :users, only: [:create]
       resources :geo_tracks, only: [:create]
       resources :user_geo_tracks, only: [:index]
+      resources :packages, only: [:index]
     end
   end
 

@@ -10,7 +10,7 @@ class Api::V1::GeoTracksController < ApplicationController
     )
 
     @geo_track.save!
-    render :show
+    render jsonapi: @geo_track
   end
 
   private

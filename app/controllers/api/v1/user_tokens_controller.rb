@@ -4,7 +4,7 @@ class Api::V1::UserTokensController < ApplicationController
   # Where user can login and hold a token, whenever a request is made the token will be validate against
   def create
     @user, @auth_token = authenticate
-    render :show, status: :created
+    render jsonapi: @user, meda: {jwt: @auth_token}
   end
 
   private
