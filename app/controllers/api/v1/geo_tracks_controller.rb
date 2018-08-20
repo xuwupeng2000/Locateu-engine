@@ -1,5 +1,4 @@
 class Api::V1::GeoTracksController < ApplicationController
-
   # Record the Geo tracks of sensor
   # We will need to know the UUID(serial_number) of sensor, lat and lng, no more than that
   def create
@@ -32,5 +31,4 @@ class Api::V1::GeoTracksController < ApplicationController
   def to_gis_point(lng, lat)
     "Point(#{lng} #{lat})"
   end
-
 end

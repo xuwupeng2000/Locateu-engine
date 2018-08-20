@@ -17,7 +17,7 @@ class Api::V1::UserTokensController < ApplicationController
             else
               raise Knock.not_found_exception_class
             end
-    [ user, token ]
+    [user, token]
   end
 
   def invalid_access

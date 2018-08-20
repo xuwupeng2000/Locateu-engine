@@ -14,5 +14,4 @@ class Api::V1::UserGeoTracksController < ApplicationController
                   end
     @sensors = current_user.sensors
   end
-
 end

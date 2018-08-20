@@ -5,32 +5,32 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '~> 5.1.2'
-gem 'pg', '~> 0.18'
 gem 'activerecord-postgis-adapter'
-gem 'rgeo'
-gem 'puma', '~> 3.0'
+gem 'factory_girl_rails'
+gem 'faker'
+gem 'figaro'
 gem 'hashie'
 gem 'jsonapi-rails'
 gem 'knock'
-gem 'figaro'
-gem 'rqrcode'
-gem 'validates_email_format_of'
+gem 'pg', '~> 0.18'
 gem 'premailer-rails'
+gem 'puma', '~> 3.0'
+gem 'rails', '~> 5.1.2'
+gem 'rgeo'
+gem 'rqrcode'
 gem 'sass-rails'
 gem 'uglifier'
-gem 'factory_girl_rails'
-gem 'faker'
+gem 'validates_email_format_of'
 
 group :development, :test do
-  gem 'pry-rails'
+  gem 'database_cleaner'
   gem 'listen', '~> 3.0.5'
+  gem 'pry-rails'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'rspec-rails'
-  gem 'database_cleaner'
-  gem 'shoulda-matchers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

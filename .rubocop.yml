@@ -1,0 +1,21 @@
+inherit_from:
+- https://relaxed.ruby.style/rubocop.yml
+
+AllCops:
+  Exclude:
+    - 'bin/*'
+    - 'db/**/*'
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+    - 'public/**/*'
+    - 'config/**/*'
+    - 'app/models/commontator/*'
+
+Metrics/BlockLength:
+  Enabled: false
+
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
