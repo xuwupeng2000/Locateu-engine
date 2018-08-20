@@ -2,7 +2,7 @@
 
 require 'factory_girl'
 
-User.delete_all
+# User.delete_all
 Package.delete_all
 22.times do
   FactoryGirl.create(:user)

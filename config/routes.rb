@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :user_tokens, only: [:create] # Login
+      resources :user_tokens, only: [:create]
       resources :users, only: [:create]
       resources :geo_tracks, only: [:create]
       resources :user_geo_tracks, only: [:index]

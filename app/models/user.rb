@@ -5,14 +5,12 @@
 class User < ApplicationRecord
   has_many :geo_tracks, through: :sensors
   has_many :geo_tracks
-  has_many :packages
+  has_many :user_packages
+  has_many :packages, through: :user_packages
 
   has_secure_password
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   validates :email, uniqueness: { case_sensitive: false }, email_format: { message: 'is not in valid format' }, allow_nil: true
-  validates :serial_code,
-            presence: true,
-            uniqueness: { case_sensitive: false }
 
   def to_token_payload
     { sub: username }
