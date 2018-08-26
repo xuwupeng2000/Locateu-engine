@@ -1,10 +1,9 @@
 class Api::V1::UserTokensController < ApplicationController
-  rescue_from ActiveRecord::RecordNotFound, with: :invalid_access
+  rescue_from ActiveRecord::RecordNotFound, with: :render_401
 
-  # Where user can login and hold a token, whenever a request is made the token will be validate against
   def create
     @user, @auth_token = authenticate
-    render jsonapi: @user, meta: {jwt: @auth_token.token}
+    render jsonapi: @user, expose: { jwt: @auth_token.token }
   end
 
   private
@@ -18,10 +17,6 @@ class Api::V1::UserTokensController < ApplicationController
               raise Knock.not_found_exception_class
             end
     [user, token]
-  end
-
-  def invalid_access
-    render :not_found, status: 401
   end
 
   def auth_token(user)

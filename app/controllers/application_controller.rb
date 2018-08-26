@@ -26,14 +26,6 @@ class ApplicationController < ActionController::Base
     head 400
   end
 
-  def unauthorized_token(exception)
-    head 401, json: {error: 'Unauthorized token'}
-  end
-
-  def expried_token(exception)
-    head 401, json: {error: 'Expired token'}
-  end
-
   private
 
   def token_from_request_headers
